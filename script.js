@@ -17,8 +17,13 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        const li = document.createElement('li');
-        li.textContent = taskText;
+       if (taskText !== '') {
+    const li = document.createElement('li');     
+    li.textContent = taskText;                   
+    taskList.appendChild(li);                  
+}
+
+      
     
         const removeBtn = document.createElement('button');
         removeBtn.textContent = 'Remove';
