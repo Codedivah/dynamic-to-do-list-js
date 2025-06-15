@@ -1,6 +1,5 @@
 'use strict';
 
-'use strict';
 
 document.addEventListener('DOMContentLoaded', function () {
     const addButton = document.getElementById('add-task-btn');
