@@ -1,36 +1,41 @@
 'use strict';
 
+document.addEventListener('DOMContentLoaded', function () {
+    const addButton = document.getElementById('add-task-btn');
+    const taskInput = document.getElementById('task-input');
+    const taskList = document.getElementById('task-list');
 
-function addTask(e) {
-    e.preventDefault(); // Prevent form submission if inside a form
+    function addTask(e) {
+        e.preventDefault();
 
-    const taskText = taskInput.value.trim(); // Step 1: Get and trim input
+        const taskText = taskInput.value.trim();
 
-    // Step 2: If input is empty, show an alert and stop
-    if (taskText === '') {
-        alert('Please enter a task');
-        return; // Stop execution
+        if (taskText === '') {
+            alert('Please enter a task');
+            return;
+        }
+
+        const li = document.createElement('li');
+        li.textContent = taskText;
+
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.className = 'remove-btn';
+
+        removeBtn.onclick = function () {
+            taskList.removeChild(li);
+        };
+
+        li.appendChild(removeBtn);
+        taskList.appendChild(li);
+        taskInput.value = '';
     }
 
-    // Step 3: If input is not empty, proceed to create task
-    const li = document.createElement('li');
-    li.textContent = taskText;
+    addButton.addEventListener('click', addTask);
 
-    // Step 4: Create a remove button
-    const removeBtn = document.createElement('button');
-    removeBtn.textContent = 'Remove';
-    removeBtn.className = 'remove-btn';
-
-    // Step 5: When clicked, remove the li element
-    removeBtn.onclick = function () {
-        taskList.removeChild(li);
-    };
-
-    // Step 6: Attach button to li, then li to the list
-    li.appendChild(removeBtn);
-    taskList.appendChild(li);
-
-    // Step 7: Clear input field
-    taskInput.value = '';
-}
-
+    taskInput.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            addTask(e);
+        }
+    });
+});
