@@ -43,20 +43,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function addTask(e) {
-        e.preventDefault();
-        const taskText = taskInput.value.trim();
+    e.preventDefault(); 
 
-        if (taskText === '') {
-            alert("Please enter a task.");
-            return;
-        }
+    const taskText = taskInput.value.trim(); 
+    if (taskText !== '') {
+       
+        const li = document.createElement('li');
+        li.textContent = taskText;
 
-        tasks.push(taskText);
-        createTaskElement(taskText);
-        saveTasks();
+       
+        const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.className = 'remove-btn';
+
+        
+        removeBtn.onclick = function () {
+            taskList.removeChild(li); // Remove the task from the list
+        };
+
+       
+        li.appendChild(removeBtn);
+        taskList.appendChild(li);
+
+       
         taskInput.value = '';
+    } else {
+        alert('Please enter a task');
     }
-   
+}
     addButton.addEventListener('click', addTask); {
        taskInput.addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
@@ -67,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadTasks();
 }
 });
-// This script implements a simple task management application that allows users to add and remove tasks.
+
 
 
 
