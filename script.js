@@ -12,15 +12,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const taskText = taskInput.value.trim();
 
-        if (taskText === '') {
-            alert('Please enter a task');
-            return;
-        }
-
-       if (taskText !== '') {
+         if (taskText !== '') {
     const li = document.createElement('li');     
     li.textContent = taskText;                   
-    taskList.appendChild(li);                  
+    taskList.appendChild(li);  
+        }
+       const removeBtn = document.createElement('button');
+        removeBtn.textContent = 'Remove';
+        removeBtn.className = 'remove-btn';
+   
+        removeBtn.onclick = function () {
+            taskList.removeChild(li);
+        };
+
+        
+        li.appendChild(removeBtn);
+        taskList.appendChild(li);
+
+       
+        taskInput.value = '';
+    }
+
+
 }
 
       
