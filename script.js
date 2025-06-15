@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     function loadTasks() {
         const saved = localStorage.getItem('tasks');
-        tasks = saved ? JSON.parse(saved) : [];
+        tasks = saved? JSON.parse(saved) : [];
         tasks.forEach(task => {
             createTaskElement(task);
         });
